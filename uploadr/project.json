@@ -1,11 +1,14 @@
 ﻿{
-  "version": "1.0.0-*",
-  "description": "",
-  "authors": [ "" ],
+  "version": "1.0.0-alpha-01",
+  "description": "NuGet package upload helper",
+  "authors": [ "Murat Girgin" ],
   "tags": [ "" ],
-  "projectUrl": "",
-  "licenseUrl": "",
+  "projectUrl": "http://github.org/muratg/uploadr",
+  "licenseUrl": "https://github.com/muratg/uploadr/blob/dev/LICENSE",
   "dependencies": {
+    "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta4",
+    "Microsoft.Framework.Logging": "1.0.0-beta4",
+    "Microsoft.Framework.Logging.Console": "1.0.0-beta4"
   },
   "commands": {
     "uploadr" : "uploadr"
@@ -21,11 +24,11 @@
     },
     "dnxcore50" : {
       "dependencies": {
-        "System.Console": "4.0.0-beta-22727",
-        "System.Collections": "4.0.10-beta-22727",
-        "System.Linq": "4.0.0-beta-22727",
-        "System.Threading": "4.0.10-beta-22727",
-        "Microsoft.CSharp": "4.0.0-beta-22727"
+        "System.Console": "4.0.0-*",
+        "System.Collections": "4.0.10-*",
+        "System.Linq": "4.0.0-*",
+        "System.Threading": "4.0.10-*",
+        "Microsoft.CSharp": "4.0.0-*"
       }
     }
   }
