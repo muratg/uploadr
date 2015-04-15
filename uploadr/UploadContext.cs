@@ -14,8 +14,8 @@ namespace uploadr
         private string Destination { get; set; }
         private string PackageList { get; set; }
         private ILogger Logger { get; set; }
-        public IEnumerable<Tuple<string, bool>> UploadSpec { get; set; }
-        public IEnumerable<Tuple<string, string>> SourceList { get; set; }
+        public IEnumerable<SpecInfo> UploadSpec { get; set; }
+        public IEnumerable<SourceInfo> SourceList { get; set; }
         public UploadContext(ILogger logger, string source, string destination, string packageList)
         {
             logger.LogVerbose("UploadContext");
@@ -43,29 +43,32 @@ namespace uploadr
                         Logger.LogCritical($"Package list file {PackageList} is in incorrect format. Should be <FileName><,><Y> or <N> on each line");
                         throw new Exception("PackageList");
                     }
-                    return new Tuple<string, bool>(line[0], include);
-                }).OrderBy(line => line.Item1);
+                    // TODO: remove version + .nupkg from the name
+                    var packageName = new PackageNameInfo(line[0]);
+                    return new SpecInfo { PackageName = packageName.Name, ShouldUpload = include };
+                }).OrderBy(spec => spec.PackageName);
 
             SourceList = 
                 Directory.EnumerateFiles(Source).Select(path => 
                 {
                     var directory = Path.GetDirectoryName(path);
                     var name = Path.GetFileName(path);
-                    return new Tuple<string, string>(directory, name);
-                }).OrderBy(fileDesc => fileDesc.Item2);
+                    //return new Tuple<string, string>(directory, name);
+                    return new SourceInfo { Directory = directory, PackageName = name, PackageVersion = "" };
+                }).OrderBy(src => src.PackageName);
         }
         public void Verify()
         {
             Logger.LogVerbose("Verify");
 
             // TODO: compare the lists
-            UploadSpec.ToList().ForEach(file => {
-                Logger.LogInformation(file.Item1);
+            UploadSpec.ToList().ForEach(spec => {
+                Logger.LogInformation(spec.PackageName);
             });
 
-            SourceList.ToList().ForEach(file =>
+            SourceList.ToList().ForEach(src =>
             {
-                Logger.LogCritical(file.Item2);
+                Logger.LogCritical(src.PackageName);
             });
   
         }
