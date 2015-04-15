@@ -13,8 +13,16 @@ namespace uploadr
     public class Program
     {
         private IConfiguration Configuration { get; set; }
+        private ILogger Logger { get; set; }
+
         public void Main(string[] args)
         {
+            var loggerFactory = new LoggerFactory();
+            loggerFactory.AddConsole(minLevel: LogLevel.Verbose);
+            Logger = loggerFactory.CreateLogger("uploadr");
+
+            Logger.LogVerbose("Accessing configuration");
+
             Configuration = new Configuration()
                 .AddJsonFile("config.json")
                 .AddEnvironmentVariables();
@@ -23,19 +31,25 @@ namespace uploadr
             var destination = Configuration["uploadr:destination"];
             var packageList = Configuration["uploadr:packageList"];
 
-            if(String.IsNullOrEmpty(source) || String.IsNullOrEmpty(destination))
+            Logger.LogVerbose($"Source: {source}");
+            Logger.LogVerbose($"Destination: {destination}");
+            Logger.LogVerbose($"Package list (csv): {packageList}");
+
+            if (String.IsNullOrEmpty(source) || String.IsNullOrEmpty(destination))
             {
+                Logger.LogCritical("Configuration is incomplete");
                 throw new Exception("Configuration");
             }
 
             if(!Directory.Exists(source))
             {
+                Logger.LogCritical($"Source directory {source} doesn't exist.");
                 throw new DirectoryNotFoundException(source);
             }
 
             if(!Directory.Exists(destination))
             {
-                WriteLine($"Directory {destination} does not exist. Creating...");
+                Logger.LogInformation($"Destination directory {destination} doesn't exits. Creating...");
                 Directory.CreateDirectory(destination);
             }
 
@@ -43,14 +57,11 @@ namespace uploadr
             {
                 throw new FileNotFoundException(packageList);
             }
+
+            var uploadContext = new UploadContext(Logger, source, destination, packageList);
             
             WriteLine("Press enter to quit.");
             ReadLine();
-        }
-
-        public void Configure()
-        {
-            WriteLine("configure");
         }
     }
 }
