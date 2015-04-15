@@ -2,6 +2,6 @@
   "uploadr": {
     "source": "\\\\projectk-tc\\drops\\Coherence-Signed\\release\\Latest\\Packages-NoTimeStamp",
     "destination": "c:\\tmp\\upload\\",
-    "packageList":  "c:\\tmp\\list.csv"
+    "packageList":  "c:\\tmp\\files.csv"
   }
 }

@@ -59,7 +59,8 @@ namespace uploadr
             }
 
             var uploadContext = new UploadContext(Logger, source, destination, packageList);
-            
+            uploadContext.Verify();
+
             WriteLine("Press enter to quit.");
             ReadLine();
         }
