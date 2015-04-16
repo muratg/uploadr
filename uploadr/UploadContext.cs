@@ -51,10 +51,8 @@ namespace uploadr
             SourceList = 
                 Directory.EnumerateFiles(Source).Select(path => 
                 {
-                    var directory = Path.GetDirectoryName(path);
-                    var name = Path.GetFileName(path);
-                    //return new Tuple<string, string>(directory, name);
-                    return new SourceInfo { Directory = directory, PackageName = name, PackageVersion = "" };
+                    var packageName = new PackageNameInfo(path);
+                    return new SourceInfo { Directory = packageName.Directory, PackageName = packageName.Name, PackageVersion = packageName.Version };
                 }).OrderBy(src => src.PackageName);
         }
         public void Verify()
