@@ -45,14 +45,14 @@ namespace uploadr
                     }
                     // TODO: remove version + .nupkg from the name
                     var packageName = new PackageNameInfo(line[0]);
-                    return new SpecInfo { PackageName = packageName.Name, ShouldUpload = include };
+                    return new SpecInfo { PackageName = packageName.Id, ShouldUpload = include };
                 }).OrderBy(spec => spec.PackageName);
 
             SourceList = 
                 Directory.EnumerateFiles(Source).Select(path => 
                 {
                     var packageName = new PackageNameInfo(path);
-                    return new SourceInfo { Directory = packageName.Directory, PackageName = packageName.Name, PackageVersion = packageName.Version };
+                    return new SourceInfo { Directory = packageName.Directory, PackageName = packageName.Id, PackageVersion = packageName.Version };
                 }).OrderBy(src => src.PackageName);
         }
         public void Verify()
@@ -66,7 +66,7 @@ namespace uploadr
 
             SourceList.ToList().ForEach(src =>
             {
-                Logger.LogCritical(src.PackageName);
+                Logger.LogCritical(src.PackageName + " Version: " + src.PackageVersion);
             });
   
         }
