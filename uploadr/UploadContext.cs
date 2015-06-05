@@ -26,26 +26,42 @@ namespace uploadr
             PackageList = packageList;
 
             UploadSpec =
-                File.ReadAllLines(PackageList).Select(file =>
+                File.ReadAllLines(PackageList).Skip(1).Select(file =>
                 {
                     var line = file.Split(new Char[] { ',' });
-                    var include = false;
+                    var upload = false;
+                    var list = false;
+                    
                     if (String.Equals(line[1], "y", StringComparison.OrdinalIgnoreCase))
                     {
-                        include = true;
+                        upload = true;
                     }
                     else if (String.Equals(line[1], "n", StringComparison.OrdinalIgnoreCase))
                     {
-                        include = false;
+                        upload = false;
                     }
                     else
                     {
                         Logger.LogCritical($"Package list file {PackageList} is in incorrect format. Should be <FileName><,><Y> or <N> on each line");
                         throw new Exception("PackageList");
                     }
-                    // TODO: remove version + .nupkg from the name
+
+                    if (String.Equals(line[2], "y", StringComparison.OrdinalIgnoreCase))
+                    {
+                        list = true;
+                    }
+                    else if (String.Equals(line[2], "n", StringComparison.OrdinalIgnoreCase))
+                    {
+                        list = false;
+                    }
+                    else
+                    {
+                        Logger.LogCritical($"Package list file {PackageList} is in incorrect format. Should be <FileName><,><Y> or <N>,<Y> or <N> on each line");
+                        throw new Exception("PackageList");
+                    }
+
                     var packageName = new PackageNameInfo(line[0]);
-                    return new SpecInfo { PackageName = packageName.Id, ShouldUpload = include };
+                    return new SpecInfo { PackageName = packageName.Id, ShouldUpload = upload, ShouldList = list };
                 }).OrderBy(spec => spec.PackageName);
 
             SourceList = 

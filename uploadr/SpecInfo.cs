@@ -9,5 +9,7 @@ namespace uploadr
     {
         public string PackageName { get; set; }
         public bool ShouldUpload { get; set; }
+        public bool ShouldList { get; set; }
+        public bool ShouldMakeVisible { get; set; }
     }
 }

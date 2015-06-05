@@ -1,7 +1,7 @@
 ﻿{
   "uploadr": {
+    "packageList":  "uploadlist.csv",
     "source": "\\\\projectk-tc\\drops\\Coherence-Signed\\release\\Latest\\Packages-NoTimeStamp",
-    "destination": "c:\\tmp\\upload\\",
-    "packageList":  "c:\\tmp\\files.csv"
+    "destination": "c:\\tmp\\upload\\"
   }
 }
