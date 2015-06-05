@@ -11,7 +11,8 @@ namespace uploadr
         public PackageNameInfo(string package)
         {
             Directory = Path.GetDirectoryName(package);
-            var fullNameParts = Path.GetFileName(package).Split(new char[] { '.'});
+            var filename = Path.GetFileName(package);
+            var fullNameParts = filename.Split(new char[] { '.'});
             // Find out where version information...
             var verIdx = fullNameParts.Length;
             // delete ".nupgk"
@@ -34,9 +35,9 @@ namespace uploadr
                     break;
                 }
             }
-
-            Id = String.Join(".", fullNameParts.Take(verIdx - 1));
-            Version = String.Join(".", fullNameParts.Skip(verIdx)).Replace(".nupkg","");
+            var tail = String.Join(".", fullNameParts.Skip(verIdx));
+            Id = filename.Replace(String.Concat(".", tail), "");
+            Version = tail.Replace(".nupkg", ""); 
         }
 
         public string Directory { get; set; }
