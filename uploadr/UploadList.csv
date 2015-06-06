@@ -1,6 +1,6 @@
 Package,Upload,List
-CoreCLR.1.0.0-beta5.nupkg,y,y
-CultureInfoGenerator.1.0.0-beta5.nupkg,y,y
+CoreCLR.1.0.0-beta5.nupkg,n,n
+CultureInfoGenerator.1.0.0-beta5.nupkg,n,n
 dnx-clr-win-x64.1.0.0-beta5.nupkg,y,y
 dnx-clr-win-x86.1.0.0-beta5.nupkg,y,y
 dnx-coreclr-darwin-x64.1.0.0-beta5.nupkg,y,y

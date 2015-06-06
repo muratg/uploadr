@@ -6,9 +6,10 @@
   "projectUrl": "http://github.org/muratg/uploadr",
   "licenseUrl": "https://github.com/muratg/uploadr/blob/dev/LICENSE",
   "dependencies": {
-    "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta4",
-    "Microsoft.Framework.Logging": "1.0.0-beta4",
-    "Microsoft.Framework.Logging.Console": "1.0.0-beta4"
+    "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-*",
+    "Microsoft.Framework.Logging": "1.0.0-*",
+    "Microsoft.Framework.Logging.Console": "1.0.0-*",
+    "NuGet.Core": "2.8.5"
   },
   "commands": {
     "uploadr" : "uploadr"
@@ -20,15 +21,6 @@
         "System.Collections": "",
         "System.Linq": "",
         "System.Threading": ""
-      }
-    },
-    "dnxcore50" : {
-      "dependencies": {
-        "System.Console": "4.0.0-*",
-        "System.Collections": "4.0.10-*",
-        "System.Linq": "4.0.0-*",
-        "System.Threading": "4.0.10-*",
-        "Microsoft.CSharp": "4.0.0-*"
       }
     }
   }

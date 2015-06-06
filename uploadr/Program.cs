@@ -23,23 +23,19 @@ namespace uploadr
 
             Logger.LogVerbose("Accessing configuration");
 
-            Configuration = new Configuration()
+            Configuration = new Configuration(".")
                 .AddJsonFile("config.json")
                 .AddEnvironmentVariables();
 
             var source = Configuration["uploadr:source"];
-            var destination = Configuration["uploadr:destination"];
             var packageList = Configuration["uploadr:packageList"];
+            var feed = Configuration["uploadr:feed"];
+            var apiKey = Configuration["uploadr:apiKey"];
 
             Logger.LogVerbose($"Source: {source}");
-            Logger.LogVerbose($"Destination: {destination}");
             Logger.LogVerbose($"Package list (csv): {packageList}");
-
-            if (String.IsNullOrEmpty(source) || String.IsNullOrEmpty(destination))
-            {
-                Logger.LogCritical("Configuration is incomplete");
-                throw new Exception("Configuration");
-            }
+            Logger.LogVerbose($"Feed: {feed}");
+            Logger.LogVerbose($"API Key: {apiKey}");
 
             if(!Directory.Exists(source))
             {
@@ -47,19 +43,24 @@ namespace uploadr
                 throw new DirectoryNotFoundException(source);
             }
 
-            if(!Directory.Exists(destination))
-            {
-                Logger.LogInformation($"Destination directory {destination} doesn't exits. Creating...");
-                Directory.CreateDirectory(destination);
-            }
-
             if(!File.Exists(packageList))
             {
                 throw new FileNotFoundException(packageList);
             }
 
-            var uploadContext = new UploadContext(Logger, source, destination, packageList);
+            if(String.IsNullOrWhiteSpace("feed"))
+            {
+                throw new InvalidOperationException("Feed to upload to not configured");
+            }
+
+            if (String.IsNullOrWhiteSpace("apiKey"))
+            {
+                throw new InvalidOperationException("API key not configured.");
+            }
+
+            var uploadContext = new UploadContext(Logger, source, packageList, feed, apiKey);
             uploadContext.Verify();
+            uploadContext.Upload();
 
             WriteLine("Press enter to quit.");
             ReadLine();

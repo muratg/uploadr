@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "uploadr": {
+      "commandName": "uploadr",
+      "environmentVariables": {
+        "Key": "Value",
+        "uploadr:apiKey": "8325f91b-eb4f-4df7-b9cc-a3d744077a7b"
+      }
+    }
+  }
+}

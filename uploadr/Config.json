@@ -1,7 +1,8 @@
 ﻿{
   "uploadr": {
     "packageList":  "uploadlist.csv",
-    "source": "\\\\projectk-tc\\drops\\Coherence-Signed\\release\\Latest\\Packages-NoTimeStamp",
-    "destination": "c:\\tmp\\upload\\"
+    "source": "C:\\tmp\\Packages",
+    "feed": "https://www.myget.org/F/murattest/api/v2",
+    "apiKey": " set api key as an env variable with the name 'uploadr:apiKey'"
   }
 }

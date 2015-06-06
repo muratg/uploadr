@@ -4,25 +4,29 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Framework.Logging;
-
+using NuGet;
+using ILogger = Microsoft.Framework.Logging.ILogger;    // ambiguity between Nuget.ILogger and M.F.L.ILogger
 
 namespace uploadr
 {
     public class UploadContext
     {
         private string Source { get; set; }
-        private string Destination { get; set; }
         private string PackageList { get; set; }
+        private string Feed { get; set; }
+        private string ApiKey { get; set; }
+
         private ILogger Logger { get; set; }
         public IEnumerable<SpecInfo> UploadSpec { get; set; }
         public IEnumerable<SourceInfo> SourceList { get; set; }
-        public UploadContext(ILogger logger, string source, string destination, string packageList)
+        public UploadContext(ILogger logger, string source, string packageList, string feed, string apiKey)
         {
             logger.LogVerbose("UploadContext");
 
             Logger = logger;
             Source = source;
-            Destination = destination;
+            Feed = feed;
+            ApiKey = apiKey;
             PackageList = packageList;
 
             UploadSpec =
@@ -71,20 +75,69 @@ namespace uploadr
                     return new SourceInfo { Directory = packageName.Directory, PackageName = packageName.Id, PackageVersion = packageName.Version };
                 }).OrderBy(src => src.PackageName);
         }
+
+        /*
+            - Verify the folder matching the upload list spec
+            - upload via nuget apis.
+            
+            */
+
         public void Verify()
         {
             Logger.LogVerbose("Verify");
 
-            // TODO: compare the lists
-            UploadSpec.ToList().ForEach(spec => {
-                Logger.LogInformation(spec.PackageName);
-            });
+            //// TODO: compare the lists
+            //UploadSpec.ToList().ForEach(spec =>
+            //{
+            //    Logger.LogInformation(spec.PackageName);
+            //});
 
-            SourceList.ToList().ForEach(src =>
+            //SourceList.ToList().ForEach(src =>
+            //{
+            //    Logger.LogCritical(src.PackageName + " Version: " + src.PackageVersion);
+            //});
+
+        }
+
+        public void Upload()
+        {
+            var sourceRepo = PackageRepositoryFactory.Default.CreateRepository(Source);
+            var destinationRepo = new PackageServer(Feed, "Uploadr");
+
+            foreach(var specInfo in UploadSpec)
             {
-                Logger.LogCritical(src.PackageName + " Version: " + src.PackageVersion);
-            });
-  
+                var package = sourceRepo.FindPackagesById(specInfo.PackageName);
+                var sourceInfo = SourceList.Where(s => s.PackageName == specInfo.PackageName).First();
+                if (sourceInfo == null)
+                {
+                    Logger.LogCritical($"Package {specInfo.PackageName} could not be found");
+                    throw new InvalidOperationException("Upload");
+                }
+                var fileInfo = new FileInfo(Path.Combine(sourceInfo.Directory, String.Concat(sourceInfo.PackageName, ".", sourceInfo.PackageVersion, ".nupkg")));
+                if(fileInfo == null)
+                {
+                    Logger.LogCritical("FileInfo");
+                    throw new InvalidOperationException("Upload");
+                }
+                if (package.Count() == 0)
+                {
+                    Logger.LogCritical($"Package {specInfo.PackageName} could not be found");
+                    throw new InvalidOperationException("Upload");
+                }
+                else
+                {
+                    Logger.LogInformation("found package: " + specInfo.PackageName);
+                    if (specInfo.ShouldUpload)
+                    {
+                        destinationRepo.PushPackage(ApiKey, package.First(), fileInfo.Length, 0, false);
+                    }
+                    if(specInfo.ShouldUpload && !specInfo.ShouldList)
+                    {
+                        destinationRepo.DeletePackage(ApiKey, package.First().Id, package.First().Version.ToString());
+                    }
+                }
+            }
+
         }
     }
 }
