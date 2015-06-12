@@ -2,7 +2,7 @@
   "uploadr": {
     "packageList":  "uploadlist.csv",
     "source": "C:\\tmp\\Packages",
-    "feed": "https://www.myget.org/F/murattest/api/v2",
+    "feed": "https://www.myget.org/F/murattest/api/v2/package",
     "apiKey": " set api key as an env variable with the name 'uploadr:apiKey'"
   }
 }
