@@ -19,7 +19,7 @@ EntityFramework.InMemory.7.0.0-beta5.nupkg,y,y
 EntityFramework.Relational.7.0.0-beta5.nupkg,y,y
 EntityFramework.Relational.Design.7.0.0-beta5.nupkg,y,y
 EntityFramework.Relational.FunctionalTests.7.0.0-beta5.nupkg,y,y
-EntityFramework.Sqlite.7.0.0-beta5.nupkg,y,y
+EntityFramework.Sqlite.7.0.0-beta5.nupkg,n,n
 EntityFramework.SqlServer.7.0.0-beta5.nupkg,y,y
 EntityFramework.SqlServer.Design.7.0.0-beta5.nupkg,y,y
 Kestrel.1.0.0-beta5.nupkg,y,y
@@ -103,7 +103,7 @@ Microsoft.CodeAnalysis.Analyzers.1.0.0-rc3.nupkg,y,y
 Microsoft.CodeAnalysis.Common.1.0.0-rc3.nupkg,y,y
 Microsoft.CodeAnalysis.CSharp.1.0.0-rc3.nupkg,y,y
 Microsoft.CSharp.4.0.0-beta-22913.nupkg,y,y
-Microsoft.Data.Sqlite.1.0.0-beta5.nupkg,y,y
+Microsoft.Data.Sqlite.1.0.0-beta5.nupkg,n,n
 Microsoft.Framework.ActivatorUtilities.Sources.1.0.0-beta5.nupkg,y,y
 Microsoft.Framework.ApplicationHost.1.0.0-beta5.nupkg,y,y
 Microsoft.Framework.BufferEntryCollection.Sources.1.0.0-beta5.nupkg,y,y
@@ -189,7 +189,7 @@ System.ComponentModel.Primitives.4.0.0-beta-22913.nupkg,y,y
 System.ComponentModel.TypeConverter.4.0.0-beta-22913.nupkg,y,y
 System.Console.4.0.0-beta-22913.nupkg,y,y
 System.Data.Common.4.0.0-beta-22913.nupkg,y,y
-System.Data.SqlClient.4.0.0-beta-22913.nupkg,y,y
+System.Data.SqlClient.4.0.0-beta-22913.nupkg,n,n
 System.Diagnostics.Contracts.4.0.0-beta-22913.nupkg,y,y
 System.Diagnostics.Debug.4.0.10-beta-22913.nupkg,y,y
 System.Diagnostics.FileVersionInfo.4.0.0-beta-22913.nupkg,y,y
