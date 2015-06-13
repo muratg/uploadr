@@ -84,19 +84,63 @@ namespace uploadr
 
         public void Verify()
         {
+            VerifySpec();
+        }
+
+        public bool VerifySpec()
+        {
             Logger.LogVerbose("Verify");
 
-            //// TODO: compare the lists
-            //UploadSpec.ToList().ForEach(spec =>
-            //{
-            //    Logger.LogInformation(spec.PackageName);
-            //});
+            var uploadSpecNames = UploadSpec.ToList().Select(si => si.PackageName).OrderBy(n => n).ToList();
+            var sourceNames = SourceList.ToList().Select(sn => sn.PackageName).OrderBy(n => n).ToList();
 
-            //SourceList.ToList().ForEach(src =>
-            //{
-            //    Logger.LogCritical(src.PackageName + " Version: " + src.PackageVersion);
-            //});
+            if(uploadSpecNames.SequenceEqual(sourceNames))
+            {
+                return true;
+            }
+            else
+            {
+                var i = 0; var j = 0;
 
+                var missingUploadSpecNames = new List<string>();
+                var missingsourceNames = new List<string>();
+
+                while ( i < uploadSpecNames.Count() && j < sourceNames.Count())
+                {
+                    var usn = uploadSpecNames[i];
+                    var sn = sourceNames[j];
+
+                    var comparison = String.CompareOrdinal(usn, sn);
+                    if (comparison == 0)
+                    {
+                        i++; j++;
+                    }
+                    else if (comparison < 0)
+                    {
+                        missingUploadSpecNames.Add(usn);
+                        i++;
+                    }
+                    else if (comparison > 0)
+                    {
+                        missingsourceNames.Add(sn);
+                        j++;
+                    }
+                }
+
+                while (i < uploadSpecNames.Count())
+                {
+                    missingUploadSpecNames.Add(uploadSpecNames[i]);
+                    i++;
+                }
+
+                while (j < sourceNames.Count())
+                {
+                    missingsourceNames.Add(sourceNames[j]);
+                    j++;
+                }
+
+                return false;
+            }
         }
 
         public void Upload()
