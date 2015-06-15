@@ -13,7 +13,7 @@ namespace uploadr
 {
     public class Program
     {
-        private IConfiguration Configuration { get; set; }
+        private IConfiguration Configuration { get; set; }    
         private ILogger Logger { get; set; }
 
         public void Main(string[] args)
@@ -25,7 +25,7 @@ namespace uploadr
             Logger.LogVerbose("Accessing configuration");
 
             Configuration = new Configuration(".")
-                .AddJsonFile("config.json")
+                .AddJsonFile("config.json") 
                 .AddEnvironmentVariables();
 
             var source = Configuration["uploadr:source"];
@@ -60,8 +60,11 @@ namespace uploadr
             }
 
             var uploadContext = new UploadContext(Logger, source, packageList, feed, apiKey);
-            uploadContext.Verify();
-            uploadContext.Upload();
+            var verified = uploadContext.Verify();
+            if (verified)
+            {
+                uploadContext.Upload();
+            }
 
             WriteLine("Press enter to quit.");
             ReadLine();
