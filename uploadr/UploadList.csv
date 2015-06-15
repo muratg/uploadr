@@ -148,7 +148,6 @@ Microsoft.Framework.Logging.Console,y,y
 Microsoft.Framework.Logging.NLog,n,n
 Microsoft.Framework.Logging.Testing,n,n
 Microsoft.Framework.Logging.TraceSource,y,y
-Microsoft.Framework.Notification,n,n
 Microsoft.Framework.NotNullAttribute.Sources,n,n
 Microsoft.Framework.OptionsModel,y,y
 Microsoft.Framework.PackageManager,n,n
