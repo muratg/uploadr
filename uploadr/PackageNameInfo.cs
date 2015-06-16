@@ -7,7 +7,7 @@ using System.IO;
 namespace uploadr 
 {
     public class PackageNameInfo
-    { 
+    {
         public PackageNameInfo(string package)
         {
             Directory = Path.GetDirectoryName(package);

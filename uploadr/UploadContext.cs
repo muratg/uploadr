@@ -90,6 +90,7 @@ namespace uploadr
 
             if (uploadSpecNames.SequenceEqual(sourceNames))
             {
+                Logger.LogInformation("Package list looks good");
                 return true;
             }
             else
@@ -100,7 +101,18 @@ namespace uploadr
                 missingUploadSpecNames.ToList().ForEach(x => Logger.LogInformation("missing in spec: " + x));
 
                 missingSourceNames.ToList().ForEach(x => Logger.LogInformation("missing in build folder: " + x));
-                return false;
+
+                if (missingUploadSpecNames.Count() != 0 || missingSourceNames.Count() != 0)
+                {
+                    Logger.LogInformation("Package list has problems");
+                    return false;
+                }
+                else
+                {
+                    Logger.LogInformation("Package list looks good");
+                    return true;
+
+                }
             }
 
         }
@@ -112,38 +124,49 @@ namespace uploadr
 
             foreach(var specInfo in UploadSpec)
             {
-                var package = sourceRepo.FindPackagesById(specInfo.PackageName);
-                var sourceInfo = SourceList.Where(s => s.PackageName == specInfo.PackageName).First();
-                if (sourceInfo == null)
+                if (!specInfo.ShouldUpload)
                 {
-                    Logger.LogCritical($"Package {specInfo.PackageName} could not be found");
-                    throw new InvalidOperationException("Upload");
-                }
-                var fileInfo = new FileInfo(Path.Combine(sourceInfo.Directory, String.Concat(sourceInfo.PackageName, ".", sourceInfo.PackageVersion, ".nupkg")));
-                if(fileInfo == null)
-                {
-                    Logger.LogCritical("FileInfo");
-                    throw new InvalidOperationException("Upload");
-                }
-                if (package.Count() == 0)
-                {
-                    Logger.LogCritical($"Package {specInfo.PackageName} could not be found");
-                    throw new InvalidOperationException("Upload");
+                    Logger.LogInformation("skipping package: " + specInfo.PackageName);
                 }
                 else
                 {
-                    Logger.LogInformation("found package: " + specInfo.PackageName);
-                    if (specInfo.ShouldUpload)
+                    var packages = sourceRepo.FindPackagesById(specInfo.PackageName);
+
+                    if (packages.Count() == 0)
                     {
-                        destinationRepo.PushPackage(ApiKey, package.First(), fileInfo.Length, 0, false);
+                        Logger.LogCritical($"Package {specInfo.PackageName} could not be found");
+                        throw new InvalidOperationException("Upload");
                     }
-                    if(specInfo.ShouldUpload && !specInfo.ShouldList)
+                    else
                     {
-                        destinationRepo.DeletePackage(ApiKey, package.First().Id, package.First().Version.ToString());
+                        packages.ToList().ForEach(pkg =>
+                        {
+                            var sourceInfo = SourceList.Where(s => s.PackageName == specInfo.PackageName).First();
+                            if (sourceInfo == null)
+                            {
+                                Logger.LogCritical($"Package {specInfo.PackageName} could not be found");
+                                throw new InvalidOperationException("Upload");
+                            }
+
+                            var fileInfo = new FileInfo(Path.Combine(sourceInfo.Directory, String.Concat(sourceInfo.PackageName, ".", sourceInfo.PackageVersion, ".nupkg")));
+                            if (fileInfo == null)
+                            {
+                                Logger.LogCritical("FileInfo");
+                                throw new InvalidOperationException("Upload");
+                            }
+
+                            Logger.LogInformation("found package: " + pkg.Id + " v: " + pkg.Version.ToString() + " , uploading");
+                            destinationRepo.PushPackage(ApiKey, pkg, fileInfo.Length, 180 * 1000, false);
+                            if (!specInfo.ShouldList)
+                            {
+                                Logger.LogInformation(" ... and unlisting");
+                                destinationRepo.DeletePackage(ApiKey, pkg.Id, pkg.Version.ToString());
+                            }
+                        });
+
                     }
                 }
             }
-
         }
     }
 }

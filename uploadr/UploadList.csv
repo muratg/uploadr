@@ -24,6 +24,7 @@ EntityFramework.SqlServer,y,y
 EntityFramework.SqlServer.Design,y,y
 Kestrel,y,y
 KoreBuild,n,n
+Microsoft.AspNet.Antiforgery,y,y
 Microsoft.AspNet.Authentication,y,y
 Microsoft.AspNet.Authentication.Cookies,y,y
 Microsoft.AspNet.Authentication.Facebook,y,y
@@ -47,6 +48,7 @@ Microsoft.AspNet.Diagnostics,y,y
 Microsoft.AspNet.Diagnostics.Abstractions,y,y
 Microsoft.AspNet.Diagnostics.Elm,y,y
 Microsoft.AspNet.Diagnostics.Entity,y,y
+Microsoft.DNXCore,y,y
 Microsoft.AspNet.FeatureModel,y,y
 Microsoft.AspNet.FileProviders.Abstractions,y,y
 Microsoft.AspNet.FileProviders.Embedded,y,y
