@@ -148,19 +148,36 @@ namespace uploadr
                                 throw new InvalidOperationException("Upload");
                             }
 
-                            var fileInfo = new FileInfo(Path.Combine(sourceInfo.Directory, String.Concat(sourceInfo.PackageName, ".", sourceInfo.PackageVersion, ".nupkg")));
+                            //var fileInfo = new FileInfo(Path.Combine(sourceInfo.Directory, String.Concat(sourceInfo.PackageName, ".", sourceInfo.PackageVersion, ".nupkg")));
+                            var fileInfo = new FileInfo(Path.Combine(sourceInfo.Directory, String.Concat(sourceInfo.PackageName, ".", pkg.Version.ToString(), ".nupkg")));
                             if (fileInfo == null)
                             {
                                 Logger.LogCritical("FileInfo");
                                 throw new InvalidOperationException("Upload");
                             }
 
-                            Logger.LogInformation("found package: " + pkg.Id + " v: " + pkg.Version.ToString() + " , uploading");
-                            destinationRepo.PushPackage(ApiKey, pkg, fileInfo.Length, 180 * 1000, false);
-                            if (!specInfo.ShouldList)
+                            var pushed = false;
+                            var retries = 1;
+                            var numRetries = 5;
+                            while (!pushed && retries <= numRetries)
                             {
-                                Logger.LogInformation(" ... and unlisting");
-                                destinationRepo.DeletePackage(ApiKey, pkg.Id, pkg.Version.ToString());
+                                try
+                                {
+                                    Logger.LogInformation("found package: " + pkg.Id + " v: " + pkg.Version.ToString() + ", Length: " + fileInfo.Length + " uploading");
+                                    destinationRepo.PushPackage(ApiKey, pkg, fileInfo.Length, 0, false);
+                                    if (!specInfo.ShouldList)
+                                    {
+                                        Logger.LogInformation(" ... and unlisting");
+                                        destinationRepo.DeletePackage(ApiKey, pkg.Id, pkg.Version.ToString());
+                                    }
+                                    pushed = true;
+                                }
+                                catch (Exception ex)
+                                {
+                                    retries++;
+                                    Logger.LogWarning("Caught an exception: " + ex.Message);
+                                    Logger.LogWarning("Will retry: " + retries + " of " + numRetries);
+                                }
                             }
                         });
 

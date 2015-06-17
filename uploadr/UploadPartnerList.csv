@@ -1,4 +1,5 @@
 Package,Upload,List
+Microsoft.CodeAnalysis.CSharp.Features,y,y
 CoreCLR,n,n
 CultureInfoGenerator,n,n
 dnx.clr.managed,n,n
