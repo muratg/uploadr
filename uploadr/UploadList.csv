@@ -12,7 +12,7 @@ dnx-coreclr-linux-x64,y,y
 dnx-coreclr-win-x64,y,y
 dnx-coreclr-win-x86,y,y
 dnx-mono,y,y
-EntityFramework,y,n
+EntityFramework,n,n
 EntityFramework.Commands,y,y
 EntityFramework.Core,y,y
 EntityFramework.Core.FunctionalTests,n,n
