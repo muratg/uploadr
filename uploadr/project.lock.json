@@ -305,10 +305,10 @@
       "NuGet.Core >= 2.8.5"
     ],
     "DNX,Version=v4.5.1": [
-      "framework/Microsoft.CSharp ",
-      "framework/System.Collections ",
-      "framework/System.Linq ",
-      "framework/System.Threading "
+      "fx/Microsoft.CSharp ",
+      "fx/System.Collections ",
+      "fx/System.Linq ",
+      "fx/System.Threading "
     ]
   }
 }

@@ -1,5 +1,13 @@
 Package,Upload,List
 Microsoft.CodeAnalysis.CSharp.Features,n,n
+Microsoft.Net.Http.Client,n,n
+Microsoft.NETCore.Platforms,n,n
+Microsoft.NETCore.Targets.DNXCore,n,n
+Microsoft.NETCore.Targets.NETFramework,n,n
+Microsoft.NETCore.Targets.UniversalWindowsPlatform,n,n
+System.Collections.Immutable,n,n
+System.Reflection.Metadata,n,n
+System.Threading.Tasks.Dataflow,n,n
 CoreCLR,n,n
 CultureInfoGenerator,n,n
 dnx.clr.managed,n,n
@@ -49,7 +57,6 @@ Microsoft.AspNet.Diagnostics,y,y
 Microsoft.AspNet.Diagnostics.Abstractions,y,y
 Microsoft.AspNet.Diagnostics.Elm,y,y
 Microsoft.AspNet.Diagnostics.Entity,y,y
-Microsoft.DNXCore,y,y
 Microsoft.AspNet.FeatureModel,y,y
 Microsoft.AspNet.FileProviders.Abstractions,y,y
 Microsoft.AspNet.FileProviders.Embedded,y,y
