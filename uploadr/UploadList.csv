@@ -15,8 +15,8 @@ dnx.coreclr.managed,n,n
 dnx.host,n,n
 dnx-clr-win-x64,y,y
 dnx-clr-win-x86,y,y
-dnx-coreclr-darwin-x64,y,y
-dnx-coreclr-linux-x64,y,y
+dnx-coreclr-darwin-x64,n,n
+dnx-coreclr-linux-x64,n,n
 dnx-coreclr-win-x64,y,y
 dnx-coreclr-win-x86,y,y
 dnx-mono,y,y
