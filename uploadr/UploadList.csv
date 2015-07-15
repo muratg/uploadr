@@ -96,11 +96,11 @@ Microsoft.AspNet.Server.Testing,n,n
 Microsoft.AspNet.Server.WebListener,y,y
 Microsoft.AspNet.Session,y,y
 Microsoft.AspNet.SignalR.Client.Cpp.v120.WinDesktop,n,n
-Microsoft.AspNet.SignalR.Messaging,y,y
-Microsoft.AspNet.SignalR.Redis,y,y
-Microsoft.AspNet.SignalR.Server,y,y
+Microsoft.AspNet.SignalR.Messaging,n,n
+Microsoft.AspNet.SignalR.Redis,n,n
+Microsoft.AspNet.SignalR.Server,n,n
 Microsoft.AspNet.SignalR.Sources,n,n
-Microsoft.AspNet.SignalR.SqlServer,y,y
+Microsoft.AspNet.SignalR.SqlServer,n,n
 Microsoft.AspNet.StaticFiles,y,y
 Microsoft.AspNet.TestHost,y,y
 Microsoft.AspNet.Testing,n,n
