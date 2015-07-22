@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Framework.ConfigurationModel;
+using Microsoft.Framework.Configuration;
 
 using Microsoft.Framework.Logging;
 using Microsoft.Framework.Logging.Console;
@@ -24,9 +24,10 @@ namespace uploadr
 
             Logger.LogVerbose("Accessing configuration");
 
-            Configuration = new Configuration(".")
-                .AddJsonFile("config.json") 
+            var builder = new ConfigurationBuilder(".")
+                .AddJsonFile("config.json")
                 .AddEnvironmentVariables();
+            Configuration = builder.Build();
 
             var source = Configuration["uploadr:source"];
             var packageList = Configuration["uploadr:packageList"];

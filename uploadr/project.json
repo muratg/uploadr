@@ -6,8 +6,11 @@
   "projectUrl": "http://github.org/muratg/uploadr",
   "licenseUrl": "https://github.com/muratg/uploadr/blob/dev/LICENSE",
   "dependencies": {
-    "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-*",
-    "Microsoft.Framework.Logging": "1.0.0-*",
+   "Microsoft.Framework.Configuration.Abstractions": "1.0.0-beta5",
+    "Microsoft.Framework.Configuration.Json": "1.0.0-beta5",
+    "Microsoft.Framework.Configuration.EnvironmentVariables": "1.0.0-beta5",
+   "Microsoft.Framework.Logging": "1.0.0-*",
+
     "Microsoft.Framework.Logging.Console": "1.0.0-*",
     "NuGet.Core": "2.8.5"
   },

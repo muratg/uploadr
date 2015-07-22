@@ -164,7 +164,7 @@ namespace uploadr
                                 try
                                 {
                                     Logger.LogInformation("found package: " + pkg.Id + " v: " + pkg.Version.ToString() + ", Length: " + fileInfo.Length + " uploading");
-                                    destinationRepo.PushPackage(ApiKey, pkg, fileInfo.Length, 0, false);
+                                    destinationRepo.PushPackage(ApiKey, pkg, fileInfo.Length, 0, true);
                                     if (!specInfo.ShouldList)
                                     {
                                         Logger.LogInformation(" ... and unlisting");
@@ -174,9 +174,9 @@ namespace uploadr
                                 }
                                 catch (Exception ex)
                                 {
-                                    retries++;
                                     Logger.LogWarning("Caught an exception: " + ex.Message);
                                     Logger.LogWarning("Will retry: " + retries + " of " + numRetries);
+                                    retries++;
                                 }
                             }
                         });
