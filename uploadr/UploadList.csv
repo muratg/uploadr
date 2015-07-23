@@ -134,12 +134,12 @@ Microsoft.Framework.Caching.Abstractions,y,y
 Microsoft.Framework.Caching.Memory,y,y
 Microsoft.Framework.Caching.Redis,y,y
 Microsoft.Framework.ClosedGenericMatcher.Sources,n,n
-Microsoft.Framework.CodeGeneration,y,y
-Microsoft.Framework.CodeGeneration.Core,y,y
-Microsoft.Framework.CodeGeneration.EntityFramework,y,y
+Microsoft.Framework.CodeGeneration,n,n
+Microsoft.Framework.CodeGeneration.Core,n,n
+Microsoft.Framework.CodeGeneration.EntityFramework,n,n
 Microsoft.Framework.CodeGeneration.Sources,n,n
-Microsoft.Framework.CodeGeneration.Templating,y,y
-Microsoft.Framework.CodeGenerators.Mvc,y,y
+Microsoft.Framework.CodeGeneration.Templating,n,n
+Microsoft.Framework.CodeGenerators.Mvc,n,n
 Microsoft.Framework.CommandLineUtils.Sources,n,n
 Microsoft.Framework.Configuration,y,y
 Microsoft.Framework.Configuration.Abstractions,y,y
