@@ -42,7 +42,7 @@ EntityFramework.InMemory,y,y
 EntityFramework.Relational,y,y
 EntityFramework.Relational.Design,y,y
 EntityFramework.Relational.FunctionalTests,n,n
-EntityFramework.Sqlite,n,n
+EntityFramework.Sqlite,y,y
 EntityFramework.SqlServer,y,y
 EntityFramework.SqlServer.Design,y,y
 Kestrel,y,y
