@@ -11,9 +11,9 @@ Microsoft.Framework.Caching.SqlConfig,y,y
 Microsoft.Framework.Caching.SqlServer,y,y
 Microsoft.Framework.Logging.Debug,y,y
 Microsoft.Framework.Notification,y,y
-Microsoft.Framework.Runtime.CommandParsing.Sources,y,y
+Microsoft.Framework.Runtime.CommandParsing.Sources,n,n
 Microsoft.Framework.SecretManager,y,y
-Microsoft.Framework.SecurityHelper.Sources,y,y
+Microsoft.Framework.SecurityHelper.Sources,n,n
 System.Numerics.Vectors.WindowsRuntime,n,n
 Microsoft.Net.Http.Client,n,n
 Microsoft.NETCore.Platforms,n,n
@@ -122,7 +122,7 @@ Microsoft.AspNet.WebSockets.Protocol,y,y
 Microsoft.AspNet.WebSockets.Server,y,y
 Microsoft.AspNet.WebUtilities,y,y
 Microsoft.CSharp,n,n
-Microsoft.Data.Sqlite,n,n
+Microsoft.Data.Sqlite,y,y
 Microsoft.DotNet.BuildTools.ApiTools,n,n
 Microsoft.DotNet.BuildTools.CoreCLR,n,n
 Microsoft.DotNet.CoreCLR,n,n
