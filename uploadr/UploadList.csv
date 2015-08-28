@@ -17,7 +17,7 @@ Microsoft.Dnx.Compilation,n,n
 Microsoft.Dnx.Compilation.Abstractions,y,y
 Microsoft.Dnx.Compilation.CSharp,n,n
 Microsoft.Dnx.Compilation.CSharp.Abstractions,y,y
-Microsoft.Dnx.Compilation.CSharp.Common,n,n
+Microsoft.Dnx.Compilation.CSharp.Common,y,y
 Microsoft.Dnx.Compilation.DesignTime,n,n
 Microsoft.Dnx.DesignTimeHost,n,n
 Microsoft.Dnx.DesignTimeHost.Abstractions,y,y
