@@ -13,7 +13,7 @@ Microsoft.CodeAnalysis.VisualBasic,n,n
 Microsoft.CodeAnalysis.VisualBasic.Workspaces,n,n
 Microsoft.CodeAnalysis.Workspaces.Common,n,n
 Microsoft.Dnx.ApplicationHost,n,n
-Microsoft.Dnx.Compilation,n,n
+Microsoft.Dnx.Compilation,y,y
 Microsoft.Dnx.Compilation.Abstractions,y,y
 Microsoft.Dnx.Compilation.CSharp,y,y
 Microsoft.Dnx.Compilation.CSharp.Abstractions,y,y
