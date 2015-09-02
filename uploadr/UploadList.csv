@@ -1,6 +1,6 @@
 Package,Upload,List
 DnxCoreCLR,n,n
-EntityFramework.Core,n,n
+EntityFramework.Core,y,y
 EntityFramework.Sqlite.Design,y,y
 Microsoft.AspNet.Razor.Test.Sources,n,n
 Microsoft.Cci,n,n
