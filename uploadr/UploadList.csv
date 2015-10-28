@@ -504,3 +504,7 @@ System.Security.Cryptography.RandomNumberGenerator,n,n
 System.Security.Cryptography.RSA,n,n
 Microsoft.DotNet.BuildTools.ApiTools,n,n
 runtime.win7-x64.Microsoft.NETCore.Runtime.CoreCLR,n,n
+runtime.linux.System.Net.Sockets,n,n
+runtime.unix.System.Net.Security,n,n
+runtime.win7.System.Net.Security,n,n
+runtime.win7.System.Net.Sockets,n,n
