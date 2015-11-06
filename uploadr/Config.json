@@ -1,8 +1,8 @@
 ﻿{
   "uploadr": {
     "packageList":  "uploadlist.csv",
-    "source": "C:\\tmp\\b7",
-    "feed": "https://www.myget.org/F/aspnetbeta8/api/v2",
+    "source": "c:/releases/rc1",
+    "feed": "https://www.myget.org/F/aspnetrc1/api/v2",
     "apiKey": " set api key as an env variable with the name 'uploadr:apiKey'"
   }
 }
