@@ -167,12 +167,12 @@ Microsoft.Extensions.Caching.Redis,y,y
 Microsoft.Extensions.Caching.SqlConfig,y,y
 Microsoft.Extensions.Caching.SqlServer,y,y
 Microsoft.Extensions.ClosedGenericMatcher.Sources,n,n
-Microsoft.Extensions.CodeGeneration,n,n
-Microsoft.Extensions.CodeGeneration.Core,n,n
-Microsoft.Extensions.CodeGeneration.EntityFramework,n,n
+Microsoft.Extensions.CodeGeneration,y,y
+Microsoft.Extensions.CodeGeneration.Core,y,y
+Microsoft.Extensions.CodeGeneration.EntityFramework,y,y
 Microsoft.Extensions.CodeGeneration.Sources,n,n
-Microsoft.Extensions.CodeGeneration.Templating,n,n
-Microsoft.Extensions.CodeGenerators.Mvc,n,n
+Microsoft.Extensions.CodeGeneration.Templating,y,y
+Microsoft.Extensions.CodeGenerators.Mvc,y,y
 Microsoft.Extensions.CommandLineUtils.Sources,n,n
 Microsoft.Extensions.Configuration,y,y
 Microsoft.Extensions.Configuration.Abstractions,y,y
